@@ -47,7 +47,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run -b -i -fn "RobotoMono Nerd Font" -
 # bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
 
 # rofi
-bindsym $mod+o exec --no-startup-id "rofi -modi drun,run -show run -theme slate"
+bindsym $mod+o exec --no-startup-id "rofi -modi drun -show run -theme slate"
 
 # wallpaper script
 bindsym $mod+Shift+p exec --no-startup-id /home/drieiro/.local/scripts/wallp
@@ -215,7 +215,7 @@ bar {
         #                  border             background         text
         focused_workspace  $bg-color          $bg-color          $text-color
         inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-        urgent_workspace   $blue-color   $blue-color   $text-color
+        urgent_workspace   $blue-color        $blue-color        $text-color
     }
 }
 
@@ -224,8 +224,8 @@ bar {
 # client.focused          $bg-color           $bg-color          $text-color          #00ff00
 # Orange border for focused windows
 client.focused          #bf7500            #bf7500            #bf7500              #ffe570
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color 
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 # increase screen brightness
