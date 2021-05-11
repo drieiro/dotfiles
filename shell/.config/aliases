@@ -1,0 +1,47 @@
+# vim: syntax=sh
+
+### Aliases ###
+
+# Terminal stuff
+alias sudo='sudo '      # https://askubuntu.com/a/22043
+alias mkdir='mkdir -p'
+alias ..='cd ..'
+alias cd..='cd ..'
+alias l='ls -l'
+alias lt='ls --human-readable --size -1 -S --classify'
+alias rm='trash'
+alias te='trash-empty'
+alias mnt="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | egrep ^/dev/ | sort"
+alias hg=' history | grep'
+alias pg='ps -e | grep'
+alias df='df -h'
+alias du='du -h'
+alias free='free -h'
+alias dut='du -ch | tail -1'
+alias pubip="curl -w '\n' https://api.ipify.org/"
+alias ip='ip --color'
+alias ipb='ip --color --brief'
+
+# Navigation aliases
+alias exer='cd ~/proxectos/exercism'
+alias cdata='cd /media/drieiro/DATOS/DATA'
+
+# Programs
+alias dsync='rsync -trluhv --delete --stats --inplace'
+alias mp3="youtube-dl -x -o '%(title)s.%(ext)s' --add-metadata --audio-format mp3 --audio-quality 320K"
+alias vi='nvim'
+alias vim='nvim'
+alias yt='yt-dlp'
+alias f='fff'
+alias nb='newsboat'
+alias geoip='geoiplookup'
+
+# Git
+alias gp='git push'
+alias gpl='git pull'
+alias ga='git add'
+alias gc='git commit'
+alias gst='git status'
+alias gcl='git clone'
+alias gf='git fetch'
+alias gm='git merge'

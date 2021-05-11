@@ -1,0 +1,3 @@
+#!/bin/sh
+
+dmenu -b -i -fn "RobotoMono Nerd Font" -nb "#282C33" -sb "#2e343f" -p "$1"

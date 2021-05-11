@@ -1,0 +1,23 @@
+# Colors
+include                 "~/.config/newsboat/colors
+
+# Feed settings
+auto-reload             yes
+refresh-on-startup      yes
+
+# bind keys
+bind-key q              quit
+bind-key j              down
+bind-key k              up
+bind-key l              open
+bind-key H              prev-feed
+bind-key L              next-feed
+bind-key c              toggle-show-read-feeds
+unbind-key              g
+bind-key g              home
+unbind-key              G
+bind-key G              end
+
+# Macros
+# macro w set browser "mpvyt %u" ; open-in-browser ; set browser "brave-browser %u"
+macro v set browser "mpv %u" ; open-in-browser ; set browser "brave-browser %u"
