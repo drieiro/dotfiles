@@ -43,7 +43,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run -b -i -fn "RobotoMono Nerd Font" -
 bindsym $mod+o exec --no-startup-id "rofi -modi drun -show run -theme slate"
 
 # wallpaper script
-bindsym $mod+Shift+p exec --no-startup-id ~/.local/scripts/wallp
+bindsym $mod+Shift+p exec --no-startup-id ~/.local/scripts/wal
 
 # change focus
 bindsym $mod+h focus left
@@ -221,9 +221,9 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Screenshot
-bindsym --release Print exec --no-startup-id gnome-screenshot
-bindsym --release Mod1+Sys_Req exec --no-startup-id gnome-screenshot -w
-bindsym --release Shift+Print exec --no-startup-id gnome-screenshot -a
+bindsym --release Print exec --no-startup-id scsh
+bindsym --release Control+Print exec --no-startup-id scsh -c
+bindsym --release Control+$mod+Print exec --no-startup-id scsh -a
 
 # Fn keybindings
 bindsym $mod+F1 exec --no-startup-id ~/.config/i3/scripts/dbrowse

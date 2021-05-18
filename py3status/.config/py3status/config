@@ -16,7 +16,8 @@ general {
 
 
 order += "spotify"
-order += "disk /"
+order += "external_script"
+# order += "disk /"
 order += "wireless wlp2s0f0"
 order += "battery 1"
 order += "cpu_usage"
@@ -82,6 +83,12 @@ volume_status {
 
 disk "/" {
     format = " %avail"
+}
+
+external_script {
+    format = "{output}"
+    script_path = "/home/drieiro/.config/i3/scripts/i3weather"
+    cache_timeout = 120
 }
 
 spotify {
