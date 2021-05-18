@@ -40,7 +40,7 @@ HIST_STAMPS="%d-%m-%y %T"
 plugins=(git sudo zsh-syntax-highlighting vi-mode)
 
 # pfetch variables
-export PF_INFO="ascii title os host kernel wm pkgs memory shell editor"
+export PF_INFO="ascii title os kernel wm pkgs shell editor"
 
 # Oh my zsh
 source $ZSH/oh-my-zsh.sh

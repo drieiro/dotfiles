@@ -2,16 +2,17 @@
 
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-read -rp "Make preinstallation? [y/n]: " preinstallation
 
-if [ "$preinstallation" = "y" ]; then
-    ## Preinstallation 
+#######################################################################################
 
-    # i3 installation
+
+# Installation functions
+install_i3 () {
     sudo apt update &>/dev/null
     sudo apt install -y i3 compton dunst py3status rofi libnotify-bin playerctl pavucontrol xbacklight feh network-manager-gnome nautilus-dropbox xdo xdotool arandr xclip lxappearance
+}
 
-    # Nerd font
+install_nerdfont () {
     if fc-list | grep -q 'Roboto Mono Nerd Font'; then
         echo "Roboto Mono Nerd Font is already installed."
     else
@@ -23,18 +24,18 @@ if [ "$preinstallation" = "y" ]; then
         | xargs wget -O /tmp/RobotoMono.zip \
         && sudo unzip /tmp/RobotoMono.zip -d /usr/share/fonts/truetype/roboto_mono_nerd_font
     fi
+}
 
-
-    # Git installation
+install_git () {
     command -v git &>/dev/null || sudo apt install git
     if grep -q 'diff-so-fancy' $dir/git/.gitconfig ; then
         [ ! -d /opt/diff-so-fancy ] && sudo git clone https://github.com/so-fancy/diff-so-fancy.git /opt/diff-so-fancy
         sudo ln -svf /opt/diff-so-fancy/diff-so-fancy /usr/local/bin/diff-so-fancy
         git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
     fi
+}
 
-
-    # mpv installation
+install_mpv () {
     command -v mpv &>/dev/null || sudo apt install mpv
 
     [ ! -d ${SC:-$HOME/.local/scripts} ] && mkdir ${SC:-$HOME/.local/scripts} 
@@ -61,30 +62,47 @@ if [ "$preinstallation" = "y" ]; then
     | awk '{print $2}' \
     | tr -d \" \
     | xargs wget -O $HOME/.config/mpv/scripts/mpris.so
+}
 
-
-    # Evince config to enable links with Brave
+install_evince () {
     if command -v evince &>/dev/null; then
-    sudo ln -s /etc/apparmor.d/usr.bin.evince /etc/apparmor.d/disable/usr.bin.evince
-    sudo /etc/init.d/apparmor restart
+        sudo ln -s /etc/apparmor.d/usr.bin.evince /etc/apparmor.d/disable/usr.bin.evince
+        sudo /etc/init.d/apparmor restart
     fi
+}
 
-
-    # Pynvim
+install_pynvim () {
     sudo apt-get install -y python3-pip
     python3 -m pip install pynvim
+}
 
-
-    # Oh-my-zsh
+install_oh-my-zsh () {
     [ ! -d $HOME/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
 
-
-    # X11
+install_X11 () {
     bash $dir/X11/install.sh
+}
+
+
+#######################################################################################
+
+
+read -rp "Make preinstallation? [y/n]: " preinstallation
+
+if [ "$preinstallation" = "y" ]; then
+    install_i3
+    install_nerdfont
+    install_git
+    install_mpv
+    install_evince
+    install_pynvim
+    install_oh-my-zsh
+    install_X11
 fi
 
-## Manage dotfiles
-command -v stow &>/dev/null || sudo apt install -y stow
+# Manage dotfiles
+command -v stow &>/dev/null || sudo apt install -y stow &>/dev/null
 stow -v --adopt alacritty
 stow -v --adopt compton
 stow -v --adopt dunst
@@ -97,5 +115,4 @@ stow -v --adopt rofi
 stow -v --adopt shell
 stow -v --adopt tmux
 stow -v --adopt vim
-#stow -v --adopt vscode
 stow -v --adopt wget
