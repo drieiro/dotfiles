@@ -32,6 +32,8 @@ alias gnome-control-center="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 
 if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
-    export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
+fi
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
     export SSH_AUTH_SOCK
 fi
