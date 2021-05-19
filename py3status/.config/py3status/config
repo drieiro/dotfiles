@@ -16,7 +16,7 @@ general {
 
 
 order += "spotify"
-order += "external_script"
+order += "i3block weather"
 # order += "disk /"
 order += "wireless wlp2s0f0"
 order += "battery 1"
@@ -85,10 +85,9 @@ disk "/" {
     format = " %avail"
 }
 
-external_script {
-    format = "{output}"
-    script_path = "/home/drieiro/.config/i3/scripts/i3weather"
-    cache_timeout = 120
+i3block weather {
+    command = "~/.config/i3/scripts/i3weather"
+    interval = 120
 }
 
 spotify {

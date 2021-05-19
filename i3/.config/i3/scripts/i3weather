@@ -16,7 +16,11 @@ esac
 
 [ "$location" != "" ] && location="$location+"
 
-ping -q -w 1 -c 1 "$(ip r | grep default | tail -1 | cut -d ' ' -f 3)" >/dev/null || exit
+gw=$(ip r | grep default | tail -1 | cut -d ' ' -f 3)
+
+[ -z $gw ] && exit 0
+
+ping -q -w 1 -c 1 "$(ip r | grep default | tail -1 | cut -d ' ' -f 3)" >/dev/null 2>&1 || exit 0
 
 curl -s wttr.in/$location > ~/.cache/weatherreport
 

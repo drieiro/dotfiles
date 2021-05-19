@@ -40,7 +40,7 @@ bindsym $mod+q kill
 bindsym $mod+d exec --no-startup-id dmenu_run -b -i -fn "RobotoMono Nerd Font" -nb "#282C33" -sb "#2e343f"
 
 # rofi
-bindsym $mod+o exec --no-startup-id "rofi -modi drun -show run -theme slate"
+bindsym $mod+o exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -show run -theme slate'
 
 # wallpaper script
 bindsym $mod+Shift+p exec --no-startup-id ~/.local/scripts/wal
@@ -133,18 +133,18 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # Forcing apps on workspaces
 # assign [class="Alacritty"] $ws1
 assign [class="Firefox"] $ws2
+for_window [class="crx_hnpfjngllnobngcgfapefoaidbinmjnm"] move to workspace $ws5 # This is the Brave webapp for WhatsApp
 assign [class="Brave"] $ws2
 assign [class="Nautilus"] $ws3
 assign [class="mpv"] $ws4
 assign [class="TelegramDesktop"] $ws5
-assign [class="whatsapp-desktop"] $ws5
 for_window [class="libreoffice"] move to workspace $ws6
 for_window [class="VirtualBox Machine"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
 
 # Put this window on the presentation output.
-bindsym $mod+F5 move container to output HDMI1
-bindsym $mod+F6 move container to output eDP1
+# bindsym $mod+F5 move container to output HDMI1
+# bindsym $mod+F6 move container to output eDP1
 
 # Set default floating mode
 for_window [class="Lxappearance"] floating enable 
@@ -184,7 +184,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
 bar {
     # status_command i3status -c ~/.config/i3/i3status.conf
-    status_command py3status -c ~/.config/py3status/config
+    status_command py3status -c ~/.config/py3status/config -l ~/.cache/py3status.log
     position top
     separator_symbol " "
 
@@ -236,3 +236,4 @@ exec --no-startup-id /usr/bin/compton -b --backend glx --vsync opengl-swc --conf
 exec --no-startup-id /usr/bin/dropbox start &
 exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id nm-applet
+exec --no-startup-id /usr/bin/clipit -d -n
