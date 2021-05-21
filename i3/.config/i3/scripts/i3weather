@@ -4,14 +4,13 @@
 . ~/.config/i3weather
 # location=""
 
-
 case $BLOCK_BUTTON in
-    1) $TERMINAL -e less -S ~/.cache/weatherreport ;;
-    3) pgrep -x dunst >/dev/null && notify-send "<b>🌈 Weather module:</b>
-- Click for wttr.in forecast.
-☔: Chance of rain/snow
-❄: Daily low
-🌞: Daily high" ;;
+    1) alacritty -e w3m es.wttr.in/$location ;;
+    # 3) pgrep -x dunst >/dev/null && notify-send "<b>🌈 Weather module:</b>
+# - Click for wttr.in forecast.
+# ☔: Chance of rain/snow
+# ❄: Daily low
+# 🌞: Daily high" ;;
 esac
 
 [ "$location" != "" ] && location="$location+"
