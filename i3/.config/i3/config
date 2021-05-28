@@ -40,7 +40,8 @@ bindsym $mod+q kill
 bindsym $mod+d exec --no-startup-id dmenu_run -b -i -fn "RobotoMono Nerd Font" -nb "#282C33" -sb "#2e343f"
 
 # rofi
-bindsym $mod+o exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -show run -theme slate'
+# bindsym $mod+o exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -show-icons -show run -theme slate'
+bindsym $mod+o exec --no-startup-id rofi -i -show-icons -modi drun -show drun -theme slate
 
 # wallpaper script
 bindsym $mod+Shift+p exec --no-startup-id ~/.local/scripts/wal

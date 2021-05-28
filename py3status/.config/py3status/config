@@ -49,14 +49,6 @@ battery 1 {
     status_unk = ""
 }
 
-run_watch DHCP {
-    pidfile = "/var/run/dhclient*.pid"
-}
-
-run_watch VPN {
-    pidfile = "/var/run/openvpn-client/*.pid"
-}
-
 tztime local {
     format = " %d.%m.%Y   %H:%M"
 }
@@ -67,18 +59,20 @@ cpu_usage {
     format = " %usage"
 }
 
-volume master {
-    format = " %volume"
-    format_muted = " (muted) %volume"
-    device = "default"
-    mixer = "Master"
-    mixer_idx = 0
-}
+# volume master {
+#     format = " %volume"
+#     format_muted = " (muted) %volume"
+#     device = "default"
+#     mixer = "Master"
+#     mixer_idx = 0
+# }
 
 volume_status {
+    command = "pactl"
     format = " {percentage}%"
-    format_muted = " muted"
+    format_muted = " muted"
     cache_timeout=0.5
+    thresholds = [(0, 'bad'), (5, 'degraded'), (10, 'good')]
 }
 
 disk "/" {
