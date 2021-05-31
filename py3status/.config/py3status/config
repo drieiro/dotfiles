@@ -23,6 +23,7 @@ order += "battery 1"
 order += "cpu_usage"
 order += "volume_status"
 order += "tztime local"
+order += "do_not_disturb"
 
 wireless wlp2s0f0 {
     format_up = "直%quality, %essid"
@@ -80,7 +81,7 @@ disk "/" {
 }
 
 i3block weather {
-    command = "~/.config/i3/scripts/i3weather"
+    command = "~/.config/i3/scripts/weather"
     interval = 120
 }
 
@@ -92,3 +93,10 @@ spotify {
     format_stopped = " detenido"
     format_down = ""
 }
+
+do_not_disturb {
+    format = " "
+    server = dunst
+    state = false
+}
+
