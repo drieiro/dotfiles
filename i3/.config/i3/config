@@ -19,6 +19,11 @@ set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 set $blue-color          #5DA8F4
 
+# i3-gaps
+gaps outer 10
+gaps inner 5
+# smart_gaps on
+
 # Hiding borders adjacent to the screen edges
 hide_edge_borders smart
 new_window pixel 2
@@ -44,7 +49,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run -b -i -fn "RobotoMono Nerd Font" -
 bindsym $mod+o exec --no-startup-id rofi -i -show-icons -modi drun -show drun -theme slate
 
 # wallpaper script
-bindsym $mod+Shift+p exec --no-startup-id ~/.local/scripts/wal
+bindsym $mod+Shift+p exec --no-startup-id ~/.local/scripts/wlp
 
 # change focus
 bindsym $mod+h focus left
@@ -188,6 +193,7 @@ bar {
     status_command py3status -c ~/.config/py3status/config -l ~/.cache/py3status.log
     position top
     separator_symbol " "
+    tray_output primary
 
    # Bar colors
     colors {
@@ -230,6 +236,7 @@ bindsym --release Control+$mod+Print exec --no-startup-id scsh -a
 bindsym $mod+F1 exec --no-startup-id ~/.config/i3/scripts/dbrowse
 bindsym $mod+F4 exec --no-startup-id ~/.config/i3/scripts/updatedisplay
 bindsym $mod+F10 exec --no-startup-id pavucontrol
+
 
 # Startup apps
 exec_always --no-startup-id setxkbmap -layout es
