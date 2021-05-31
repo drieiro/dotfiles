@@ -1,7 +1,7 @@
 #!/bin/sh
 # https://raw.githubusercontent.com/LukeSmithxyz/voidrice/4cb6e5451b40766211e7b7ded243347d55d69153/.scripts/statusbar/i3weather
 ### This is only if your location isn't automatically detected, otherwise you can leave it blank.
-. ~/.config/i3weather
+. ~/.config/weather
 # location=""
 
 case $BLOCK_BUTTON in
