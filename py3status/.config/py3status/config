@@ -7,11 +7,11 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-    colors = true
+    colors = true 
     interval = 5
-    color_good = "#efaf8e"
-    color_degraded = "#efb993"
-    color_bad = "#e93c58"
+    color_good = "#ffffff"
+    color_degraded = "#fe8019"
+    color_bad = "#cc241d"
 }
 
 
@@ -73,7 +73,7 @@ volume_status {
     format = " {percentage}%"
     format_muted = " muted"
     cache_timeout=0.5
-    thresholds = [(0, 'bad'), (5, 'degraded'), (10, 'good')]
+    thresholds = [(0, 'bad'), (10, 'degraded'), (15, 'good')]
 }
 
 disk "/" {
@@ -92,11 +92,13 @@ spotify {
     format = " {artist} - {title}"
     format_stopped = " detenido"
     format_down = ""
+    color_good = "#fabd2f"
 }
 
 do_not_disturb {
     format = " "
     server = dunst
     state = false
+    color_good = "#fabd2f"
 }
 
