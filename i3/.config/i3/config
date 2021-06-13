@@ -42,7 +42,7 @@ bindsym $mod+f exec --no-startup-id nautilus
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -b -i -fn "RobotoMono Nerd Font" -nb "#282C33" -sb "#2e343f"
+bindsym $mod+d exec --no-startup-id dmenu_run
 
 # rofi
 # bindsym $mod+o exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -show-icons -show run -theme slate'

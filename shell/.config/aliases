@@ -18,7 +18,7 @@ alias df='df -h'
 alias du='du -h'
 alias free='free -h'
 alias dut='du -ch | tail -1'
-alias pubip="curl -w '\n' https://api.ipify.org/"
+alias pubip="curl canhazip.com"
 alias ip='ip --color'
 alias ipb='ip --color --brief'
 
