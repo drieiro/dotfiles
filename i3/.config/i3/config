@@ -240,8 +240,8 @@ bindsym $mod+F10 exec --no-startup-id pavucontrol
 
 # Startup apps
 exec_always --no-startup-id setxkbmap -layout es
-exec --no-startup-id /usr/bin/compton -b --backend glx --vsync opengl-swc --config ~/.config/compton/compton.conf &
-exec --no-startup-id /usr/bin/dropbox start &
+exec --no-startup-id dbus-launch compton -bG --backend glx --vsync opengl-swc --config ~/.config/compton/compton.conf &
+exec --no-startup-id ~/.dropbox-dist/dropboxd &
 exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id nm-applet
 exec --no-startup-id /usr/bin/clipit -d -n
