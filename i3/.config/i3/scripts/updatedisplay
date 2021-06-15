@@ -10,10 +10,10 @@ screens=$(echo "$allposs" | grep " connected" | awk '{print $1}')
 # Simply execute xrandr according to my needs
 if $(echo $screens | grep -q "HDMI"); then
     xrandr --output HDMI1 --mode 1280x720 --pos 40x0 --rotate normal --output DP1 --off --output eDP1 --primary --mode 1366x768 --pos 0x720 --rotate normal --output VGA1 --off \
-        && notify-send 'Monitor dual configurado'
+        && [ "$1" != "-q" ] && notify-send 'Monitor dual configurado'
 else
     xrandr --output HDMI1 --off --output DP1 --off --output eDP1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output VGA1 --off \
-        && notify-send 'Monitor único configurado'
+        && [ "$1" != "-q" ] && notify-send 'Monitor único configurado'
 fi
 
 if [ -f ~/.fehbg ]; then

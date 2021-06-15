@@ -13,10 +13,6 @@ source $HOME/.config/functions
 # Add rclone functions
 source $HOME/.config/rclone_func
 
-# Scripts folder
-export PATH=$HOME/.local/scripts:$HOME/.local/bin:$PATH
-export SC=$HOME/.local/scripts
-
 # Default software
 export EDITOR="nvim"
 export BROWSER="brave-browser"

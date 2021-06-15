@@ -20,6 +20,9 @@ source $HOME/.config/rclone_func
 # Scripts folder
 export PATH=$HOME/.local/scripts:$HOME/.local/bin:$PATH
 export SC=$HOME/.local/scripts
+if [ -d "$HOME/.config/i3/scripts" ] ; then
+    export PATH="$HOME/.config/i3/scripts:$PATH"
+fi
 
 # Default software
 export EDITOR="nvim"

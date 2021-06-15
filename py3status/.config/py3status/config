@@ -22,6 +22,7 @@ order += "wireless wlp2s0f0"
 order += "battery 1"
 order += "cpu_usage"
 order += "volume_status"
+order += "i3block backlight"
 order += "tztime local"
 order += "do_not_disturb"
 
@@ -102,3 +103,7 @@ do_not_disturb {
     color_good = "#fabd2f"
 }
 
+i3block backlight {
+    command = "~/.config/i3/scripts/bl"
+    interval = 10
+}

@@ -26,8 +26,19 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# set PATH so it includes my personal scripts if the folder exists (it should)
+if [ -d "$HOME/.local/scripts" ] ; then
+    PATH="$HOME/.local/scripts:$PATH"
+    SC=$HOME/.local/scripts
+fi
+
+# set PATH so it includes specific i3 scripts
+if [ -d "$HOME/.config/i3/scripts" ] ; then
+    PATH="$HOME/.config/i3/scripts:$PATH"
+fi
+
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
-alias spotify="spotify --no-zygote"
+export spotify="spotify --no-zygote"
 alias gnome-control-center="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 
 if test -z "$DBUS_SESSION_BUS_ADDRESS"; then

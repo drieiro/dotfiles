@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#
+# bl - backlight
+#
+
+laptop="eDP1"
+
+get_active_monitors()
+{
+    xrandr | awk '/\ connected/ && /[[:digit:]]x[[:digit:]].*+/{print $1}'
+}
+
+if get_active_monitors | grep -q "$laptop"; then
+    bl=$(xbacklight -get)
+    echo "盛 ${bl%.*}%"
+else exit 0; fi

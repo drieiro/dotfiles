@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case "$1" in
+    -p) [ $(echo "No\nSí" | dmenu -i -nb darkred -sb red -sf white -nf gray -p "¿Apagar el equipo?") = "Sí" ] && /usr/sbin/shutdown -h now ;;
+    -r) [ $(echo "No\nSí" | dmenu -i -nb darkred -sb red -sf white -nf gray -p "¿Reiniciar el equipo?") = "Sí" ] && /usr/sbin/shutdown -r now ;;
+    -e) [ $(echo "No\nSí" | dmenu -i -p "¿Cerrar sesión?") = "Sí" ] && i3-msg exit ;;
+    *) exit ;;
+esac
+
+#E53935
