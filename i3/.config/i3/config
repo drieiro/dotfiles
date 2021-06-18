@@ -38,6 +38,9 @@ bindsym $mod+Shift+Return exec --no-startup-id alacritty --working-directory "$(
 # Start GUI file manager
 bindsym $mod+f exec --no-startup-id spacefm
 
+# Start web browser
+bindsym $mod+n exec --no-startup-id brave-browser 
+
 # kill focused window
 bindsym $mod+q kill
 
@@ -49,7 +52,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run -i
 bindsym $mod+o exec --no-startup-id rofi -i -show-icons -modi drun -show drun -theme slate
 
 # wallpaper script
-bindsym $mod+Shift+p exec --no-startup-id ~/.local/scripts/wlp
+bindsym $mod+Shift+p exec --no-startup-id wlp
 
 # change focus
 bindsym $mod+h focus left
@@ -226,6 +229,8 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+# KEYBINDINGS
 
 # Screenshot
 bindsym --release Print exec --no-startup-id scsh

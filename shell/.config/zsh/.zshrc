@@ -7,7 +7,7 @@
 # History settings
 setopt share_history
 HISTORY_IGNORE="(ls|exit|pwd|clear|history|cd)"
-HISTFILE=$HOME/.history
+HISTFILE=$HOME/.cache/history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 } # Ignore failed commands
 
 # Add aliases
@@ -17,29 +17,23 @@ source $HOME/.config/functions
 # Add rclone functions
 source $HOME/.config/rclone_func
 
-# Scripts folder
-export PATH=$HOME/.local/scripts:$HOME/.local/bin:$PATH
-export SC=$HOME/.local/scripts
-if [ -d "$HOME/.config/i3/scripts" ] ; then
-    export PATH="$HOME/.config/i3/scripts:$PATH"
-fi
-
 # Default software
 export EDITOR="nvim"
 export BROWSER="brave-browser"
 export TERMINAL="alacritty"
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.config/zsh/oh-my-zsh"
 
 # Set name of the theme to load
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="riesp"
+ZSH_THEME="drieiro"
 
 # stamp shown in the history command output.
 HIST_STAMPS="%d-%m-%y %T"
 
 # Plugins ('~/.oh-my-zsh/plugins/*' and '~/.oh-my-zsh/custom/plugins')
+[ -d $ZSH/custom/plugins/zsh-syntax-highlighting ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting
 plugins=(git sudo zsh-syntax-highlighting vi-mode)
 
 # pfetch variables
@@ -49,4 +43,4 @@ export PF_INFO="ascii title os kernel wm pkgs shell editor"
 source $ZSH/oh-my-zsh.sh
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh

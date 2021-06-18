@@ -110,9 +110,9 @@ stow -v --adopt git
 stow -v --adopt i3
 stow -v --adopt mpv
 stow -v --adopt newsboat
+stow -v --adopt nvim
 stow -v --adopt py3status
 stow -v --adopt rofi
 stow -v --adopt shell
 stow -v --adopt tmux
-stow -v --adopt vim
 stow -v --adopt wget

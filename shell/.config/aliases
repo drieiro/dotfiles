@@ -21,6 +21,7 @@ alias dut='du -ch | tail -1'
 alias pubip="curl canhazip.com"
 alias ip='ip --color'
 alias ipb='ip --color --brief'
+alias cp='cp -v'
 
 # Navigation aliases
 alias exer='cd ~/proxectos/exercism'

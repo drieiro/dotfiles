@@ -39,11 +39,22 @@ fi
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export spotify="spotify --no-zygote"
-alias gnome-control-center="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+
+# Clean up
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export GNUPGHOME=${XDG_CONFIG_HOME:-$HOME/.config}/gnupg
+export LESSHISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/lesshst"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export PYLINTHOME="${XDG_DATA_HOME:-$HOME/.local/share}/pylint"
+
 
 if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
 fi
+
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start)
     export SSH_AUTH_SOCK

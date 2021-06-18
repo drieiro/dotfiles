@@ -1,4 +1,4 @@
-" -- (Neo)vim configuration --
+" -- Neovim configuration --
 
 " General configuration
 let mapleader = ","             " Set leader key
@@ -15,10 +15,10 @@ set splitbelow                  " Split direction
 set splitright                  " Vertical split direction
 set wildignorecase              " Ignore case for filenames and directories
 set linebreak
-if empty(glob('~/.vim/undodir'))
-    silent !mkdir -p ~/.vim/undodir
+if empty(glob('~/.config/nvim/undodir'))
+    silent !mkdir -p ~/.config/nvim/undodir
 endif
-set undodir=~/.vim/undodir      " Undo directory
+set undodir=~/.config/nvim/undodir      " Undo directory
 set undofile
 
 " Specific vim config
@@ -28,7 +28,7 @@ if !has('nvim')
     set hlsearch                    " Enable search highlighting
     set autoindent
     set encoding=utf-8      
-    set viminfo+=n~/.vim/viminfo
+    set viminfo+=n~/.config/nvim/viminfo
     " https://medium.com/@dubistkomisch/how-to-actually-get-italics-and-true-colour-to-work-in-iterm-tmux-vim-9ebe55ebc2be
     let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
@@ -64,13 +64,15 @@ vnoremap > >gv
 vnoremap < <gv
 
 " Install vim-plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
+	autocmd VimEnter * PlugInstall
 endif
 
 " Plug configuration
-call plug#begin('~/.vim/plugged')
+call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 
     Plug 'gruvbox-community/gruvbox'
     Plug 'tpope/vim-sensible'
