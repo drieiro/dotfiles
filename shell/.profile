@@ -29,7 +29,7 @@ fi
 # set PATH so it includes my personal scripts if the folder exists (it should)
 if [ -d "$HOME/.local/scripts" ] ; then
     PATH="$HOME/.local/scripts:$PATH"
-    SC=$HOME/.local/scripts
+    export SC=$HOME/.local/scripts
 fi
 
 # set PATH so it includes specific i3 scripts
@@ -49,6 +49,7 @@ export GNUPGHOME=${XDG_CONFIG_HOME:-$HOME/.config}/gnupg
 export LESSHISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/lesshst"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export PYLINTHOME="${XDG_DATA_HOME:-$HOME/.local/share}/pylint"
+export ICEAUTHORITY=${XDG_CACHE_HOME:-$HOME/.cache}/ICEauthority
 
 
 if test -z "$DBUS_SESSION_BUS_ADDRESS"; then

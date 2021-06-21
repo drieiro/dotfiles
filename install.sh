@@ -9,7 +9,7 @@ dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # Installation functions
 install_i3 () {
     sudo apt update &>/dev/null
-    sudo apt install -y i3 compton dunst py3status rofi libnotify-bin playerctl pavucontrol xbacklight feh network-manager-gnome nautilus-dropbox xdo xdotool arandr xclip lxappearance clipit
+    sudo apt install -y i3 compton dunst py3status rofi libnotify-bin playerctl pavucontrol xbacklight feh network-manager-gnome nautilus-dropbox xdo xdotool arandr xclip lxappearance clipit unclutter
 }
 
 install_nerdfont () {
@@ -42,18 +42,6 @@ install_mpv () {
     [ ! -d $HOME/.config/mpv ] && mkdir $HOME/.config/mpv
     ln -svf $dir/misc/mpvsi ${SC/mpvsi:-$HOME/.local/scripts/mpvsi}
     sudo ln -svf $dir/misc/mpv.desktop /usr/share/applications/mpv.desktop
-
-    # Plugins
-    [ ! -d $HOME/.config/mpv/scripts ] && mkdir $HOME/.config/mpv/scripts
-
-    ## SponsorblockMinimal
-    sudo git clone https://codeberg.org/jouni/mpv_sponsorblock_minimal.git /opt/mpv_sponsorblock_minimal
-    ln -s /opt/mpv_sponsorblock_minimal/sponsorblock_minimal.lua $HOME/.config/mpv/scripts/sponsorblock_minimal.lua
-
-    ## mpv-youtube-quality
-    sudo git clone https://github.com/jgreco/mpv-youtube-quality.git /opt/mpv-youtube-quality
-    ln -s /opt/mpv-youtube-quality/youtube-quality.lua $HOME/.config/mpv/scripts/youtube-quality.lua
-    sudo sed -i 's/select_binding = "ENTER",/select_binding = "SPACE",/g' /opt/mpv-youtube-quality/youtube-quality.lua
 
     ## mpv-mpris
     curl -s https://api.github.com/repos/hoyon/mpv-mpris/releases/latest \
@@ -114,5 +102,5 @@ stow -v --adopt nvim
 stow -v --adopt py3status
 stow -v --adopt rofi
 stow -v --adopt shell
-stow -v --adopt tmux
+# stow -v --adopt tmux
 stow -v --adopt wget

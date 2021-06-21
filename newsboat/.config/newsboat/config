@@ -6,7 +6,7 @@ auto-reload             yes
 refresh-on-startup      yes
 
 # bind keys
-bind-key q              quit
+bind-key h              quit
 bind-key j              down
 bind-key k              up
 bind-key l              open
@@ -17,6 +17,9 @@ unbind-key              g
 bind-key g              home
 unbind-key              G
 bind-key G              end
+bind-key n              next-unread
+bind-key N              prev-unread
+
 
 # Macros
 # macro w set browser "mpvyt %u" ; open-in-browser ; set browser "brave-browser %u"

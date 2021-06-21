@@ -36,7 +36,7 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+Return exec --no-startup-id alacritty --working-directory "$(readlink -e /proc/"$(pgrep -oP "$(xdo pid)")"/cwd)"
 
 # Start GUI file manager
-bindsym $mod+f exec --no-startup-id spacefm
+bindsym $mod+f exec --no-startup-id pcmanfm
 
 # Start web browser
 bindsym $mod+n exec --no-startup-id brave-browser 
@@ -144,7 +144,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 assign [class="Firefox"] $ws2
 for_window [class="crx_hnpfjngllnobngcgfapefoaidbinmjnm"] move to workspace $ws5 # This is the Brave webapp for WhatsApp
 assign [class="Brave"] $ws2
-assign [class="Spacefm"] $ws3
+assign [class="pcmanfm"] $ws3
 assign [class="mpv"] $ws4
 assign [class="TelegramDesktop"] $ws5
 for_window [class="libreoffice"] move to workspace $ws6
@@ -230,8 +230,6 @@ bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-# KEYBINDINGS
-
 # Screenshot
 bindsym --release Print exec --no-startup-id scsh
 bindsym --release Control+Print exec --no-startup-id scsh -c
@@ -242,12 +240,12 @@ bindsym $mod+F1 exec --no-startup-id dbrowse
 bindsym $mod+F4 exec --no-startup-id updatedisplay
 bindsym $mod+F10 exec --no-startup-id pavucontrol
 
-
 # Startup apps
 exec_always --no-startup-id setxkbmap -layout es
 exec --no-startup-id dbus-launch compton -bG --backend glx --vsync opengl-swc --config ~/.config/compton/compton.conf &
 exec --no-startup-id ~/.dropbox-dist/dropboxd &
 exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id nm-applet
-exec --no-startup-id clipit -d -n
+exec --no-startup-id clipit -d -n &
 exec --no-startup-id updatedisplay -q
+exec --no-startup-id unclutter &
