@@ -1,10 +1,6 @@
 # Colors
 include                 "~/.config/newsboat/colors
 
-# Feed settings
-auto-reload             yes
-refresh-on-startup      yes
-
 # bind keys
 bind-key h              quit
 bind-key j              down

@@ -9,7 +9,7 @@ dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # Installation functions
 install_i3 () {
     sudo apt update &>/dev/null
-    sudo apt install -y i3 compton dunst py3status rofi libnotify-bin playerctl pavucontrol xbacklight feh network-manager-gnome nautilus-dropbox xdo xdotool arandr xclip lxappearance clipit unclutter
+    sudo apt install -y i3 compton dunst py3status rofi libnotify-bin playerctl pavucontrol xbacklight feh network-manager-gnome nautilus-dropbox xdo xdotool arandr xclip lxappearance clipit unclutter-xfixes
 }
 
 install_nerdfont () {
@@ -28,20 +28,20 @@ install_nerdfont () {
 
 install_git () {
     command -v git &>/dev/null || sudo apt install git
-    if grep -q 'diff-so-fancy' $dir/git/.gitconfig ; then
-        [ ! -d /opt/diff-so-fancy ] && sudo git clone https://github.com/so-fancy/diff-so-fancy.git /opt/diff-so-fancy
-        sudo ln -svf /opt/diff-so-fancy/diff-so-fancy /usr/local/bin/diff-so-fancy
-        git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
-    fi
+
+    curl -s https://api.github.com/repos/so-fancy/diff-so-fancy/releases/latest \
+    | grep "browser_download_url" \
+    | grep "diff-so-fancy" \
+    | awk '{print $2}' \
+    | tr -d \" \
+    | xargs wget -O $HOME/.local/bin/diff-so-fancy \
+    && chmod +x $HOME/.local/bin/diff-so-fancy
+
+    git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 }
 
 install_mpv () {
     command -v mpv &>/dev/null || sudo apt install mpv
-
-    [ ! -d ${SC:-$HOME/.local/scripts} ] && mkdir ${SC:-$HOME/.local/scripts} 
-    [ ! -d $HOME/.config/mpv ] && mkdir $HOME/.config/mpv
-    ln -svf $dir/misc/mpvsi ${SC/mpvsi:-$HOME/.local/scripts/mpvsi}
-    sudo ln -svf $dir/misc/mpv.desktop /usr/share/applications/mpv.desktop
 
     ## mpv-mpris
     curl -s https://api.github.com/repos/hoyon/mpv-mpris/releases/latest \
@@ -91,16 +91,17 @@ fi
 
 # Manage dotfiles
 command -v stow &>/dev/null || sudo apt install -y stow &>/dev/null
+# stow -v --adopt tmux
 stow -v --adopt alacritty
 stow -v --adopt compton
 stow -v --adopt dunst
 stow -v --adopt git
 stow -v --adopt i3
+stow -v --adopt misc
 stow -v --adopt mpv
 stow -v --adopt newsboat
 stow -v --adopt nvim
 stow -v --adopt py3status
 stow -v --adopt rofi
 stow -v --adopt shell
-# stow -v --adopt tmux
 stow -v --adopt wget

@@ -6,5 +6,3 @@ case "$1" in
     -e) [ $(echo "No\nSí" | dmenu -i -p "¿Cerrar sesión?") = "Sí" ] && i3-msg exit ;;
     *) exit ;;
 esac
-
-#E53935

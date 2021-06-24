@@ -144,7 +144,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 assign [class="Firefox"] $ws2
 for_window [class="crx_hnpfjngllnobngcgfapefoaidbinmjnm"] move to workspace $ws5 # This is the Brave webapp for WhatsApp
 assign [class="Brave"] $ws2
-assign [class="pcmanfm"] $ws3
+assign [class="Pcmanfm"] $ws3
 assign [class="mpv"] $ws4
 assign [class="TelegramDesktop"] $ws5
 for_window [class="libreoffice"] move to workspace $ws6
@@ -160,14 +160,6 @@ for_window [class="Lxappearance"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="arandr"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec --no-startup-id pcmanage -e
-bindsym $mod+Shift+x exec --no-startup-id pcmanage -p
-bindsym $mod+Shift+z exec --no-startup-id pcmanage -r
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -217,6 +209,14 @@ client.focused          #bf7500            #bf7500            #bf7500           
 client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color 
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color
 
+# Keybindings
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec --no-startup-id pcmanage -e
+bindsym $mod+Shift+x exec --no-startup-id pcmanage -p
+bindsym $mod+Shift+z exec --no-startup-id pcmanage -r
+bindsym $mod+i exec --no-startup-id dmenuunicode
+
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
@@ -248,4 +248,4 @@ exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id nm-applet
 exec --no-startup-id clipit -d -n &
 exec --no-startup-id updatedisplay -q
-exec --no-startup-id unclutter &
+exec_always --no-startup-id unclutter-xfixes --timeout 5 &

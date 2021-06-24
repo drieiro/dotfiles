@@ -7,6 +7,7 @@ index 1edb647..0db5ef7 100644
  /* -fn option overrides fonts[0]; default X11 font or font set */
  static const char *fonts[] = {
 -	"monospace:size=10"
++	"Noto Color Emoji:size=12"
 +	"RobotoMono Nerd Font:size=12"
  };
  static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */

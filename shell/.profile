@@ -38,7 +38,7 @@ if [ -d "$HOME/.config/i3/scripts" ] ; then
 fi
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export spotify="spotify --no-zygote"
+alias spotify="spotify --no-zygote"
 
 # Clean up
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -50,12 +50,14 @@ export LESSHISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/lesshst"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export PYLINTHOME="${XDG_DATA_HOME:-$HOME/.local/share}/pylint"
 export ICEAUTHORITY=${XDG_CACHE_HOME:-$HOME/.cache}/ICEauthority
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 
 
 if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
 fi
 
+# Launch gnome-keyring
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start)
     export SSH_AUTH_SOCK

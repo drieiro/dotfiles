@@ -4,7 +4,15 @@
 # bl - backlight
 #
 
+# Set default laptop's screen name
 laptop="eDP1"
+
+# Set default emoji
+if fc-list | grep -q "Nerd Font" ; then
+    emoji="盛"
+else
+    emoji="☀️"
+fi
 
 get_active_monitors()
 {
@@ -13,5 +21,5 @@ get_active_monitors()
 
 if get_active_monitors | grep -q "$laptop"; then
     bl=$(xbacklight -get)
-    echo "盛 ${bl%.*}%"
+    echo "$emoji ${bl%.*}%"
 else exit 0; fi
