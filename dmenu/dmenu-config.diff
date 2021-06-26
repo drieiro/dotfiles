@@ -14,10 +14,11 @@ index 1edb647..0db5ef7 100644
  static const char *colors[SchemeLast][2] = {
  	/*     fg         bg       */
 -	[SchemeNorm] = { "#bbbbbb", "#222222" },
-+	[SchemeNorm] = { "#bbbbbb", "#282c33" },
- 	[SchemeSel] = { "#eeeeee", "#005577" },
+- 	[SchemeSel] = { "#eeeeee", "#005577" },
 -	[SchemeOut] = { "#000000", "#00ffff" },
-+	[SchemeOut] = { "#000000", "#2e343f" },
++	[SchemeNorm] = { "#bbbbbb", "#1d2021" },
++ 	[SchemeSel] = { "#eeeeee", "#458588" },
++	[SchemeOut] = { "#000000", "#282828" },
  };
  /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
  static unsigned int lines      = 0;

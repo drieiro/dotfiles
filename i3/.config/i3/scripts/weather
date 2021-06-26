@@ -12,7 +12,7 @@ weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
 
 # Import $location variable
 . ~/.config/weather
-getforecast() { curl -sf "wttr.in/$location" > "$weatherreport" || exit 1 ;}
+getforecast() { curl -sf "wttr.in/$location" > "$weatherreport" || exit 0 ;}
 
 # Some very particular and terse stream manipulation. We get the maximum
 # precipitation chance and the daily high and low from the downloaded file and

@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# em - select and copy emojis from the terminal
+#
+
+emojis="$HOME/.local/share/emoji"
+# [ -e "$emojis" ] || wget 
+[ ! -x "$(command -v fzf)" ] && echo "fzf no está instalado o no es ejecutable." && exit 1
+
+# Default FZF options
+export FZF_DEFAULT_OPTS='
+--layout=reverse
+--prompt="Buscar emoji: "'
+
+selected=$(fzf -e --query="$selected" < "$emojis" | cut -d" " -f1)
+[ -z "$selected" ] && exit 2
+printf "$selected" | xclip -selection clipboard
+notify-send "'$selected' copiado al portapapeles" & 

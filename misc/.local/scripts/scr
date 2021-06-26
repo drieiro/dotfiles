@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rsync -LH -trluhv --delete --stats --inplace \
+    --exclude '.git' \
+    ${SC:-$HOME/.local/scripts} $HOME/Dropbox/bak

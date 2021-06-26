@@ -1,0 +1,97 @@
+#!/bin/bash
+
+#
+# krypton - encrypt or decrypt the current/working directory
+#
+
+################################################################################
+
+# Public key
+# Add here your GPG keypair. Usually it's your email address.
+# Here you have more info: https://www.redhat.com/sysadmin/creating-gpg-keypairs
+pubkey="riesp@pm.me"
+
+################################################################################
+
+# Script begin
+
+type gpg &>/dev/null || ( echo "gpg no se encuentra instalado en el sistema." && exit 1 )
+version="2021.05.18.1"
+
+usage () {
+    cat << EOF
+  _  __                 _              
+ | |/ /                | |             
+ | ' / _ __ _   _ _ __ | |_ ___  _ __  
+ |  < | '__| | | | '_ \| __/ _ \| '_ \ 
+ | . \| |  | |_| | |_) | || (_) | | | |
+ |_|\_\_|   \__, | .__/ \__\___/|_| |_|
+             __/ | |                   
+            |___/|_|   v$version                  
+
+Usage:
+
+    $ krypton -e
+        Encripta todos los archivos del directorio actual y de todos los subdirectorios.
+
+    $ krypton -d
+        Desencripta todos los archivos del directorio actual y de todos los subdirectorios.
+
+    $ krypton -h
+        Muestra esta ayuda.
+
+EOF
+}
+
+# File decryption
+decrypt () {
+    if find ./* -type f -name '*.pgp' -print0 | while read -rd $'\0' i; do 
+            # Original filename should end with .pgp. Get the filename without this extension.
+            name=${i%.*}
+            if gpg -r $pubkey --output "$name" --decrypt "$i" &>/dev/null; then
+                echo "Fichero '$i' descifrado..."
+            else
+                echo "No se ha podido descifrar el fichero '$i'..."
+            fi
+        done && echo "Hecho";
+    then
+        echo "¿Eliminar los ficheros originales encriptados? [ 1 / 2 ]"
+        select delete in "Sí" "No"; do
+            case "$delete" in
+                Sí) find ./* -name '*.pgp' -type f -exec rm -rf {} \; && echo "Hecho" ; break ;;
+                No) echo "OK!" && exit 0 ;;
+                *) echo "No sé a qué te refieres con eso."
+            esac
+        done
+    else
+        echo "Algo ha fallado. Saliendo." && exit 2
+    fi
+}
+
+encrypt () {
+    if find ./* -type f -print0 | while read -rd $'\0' i; do 
+            if gpg -r $pubkey --output "$i.pgp" --encrypt "$i"; then
+                echo "Fichero '$i' cifrado..."
+            else
+                echo "No ha sido posible cifrar el fichero '$i'..."
+            fi
+        done && echo "Hecho"
+    then
+        echo "¿Eliminar los ficheros originales? [ 1 / 2 ]"
+        select delete in "Sí" "No"; do
+            case "$delete" in
+                Sí) find ./* ! -name '*.pgp' -type f -exec rm -rf {} \; && echo "Hecho" ; break ;;
+                No) echo "OK!" && exit 0 ;;
+                *) echo "No sé a qué te refieres con eso."
+            esac
+        done
+    else
+        echo "Algo ha fallado. Saliendo." && exit 2
+    fi
+}
+
+case "$1" in
+    -e) encrypt ;;
+    -d) decrypt ;;
+    -h|--help|*) usage ;;
+esac
