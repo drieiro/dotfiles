@@ -11,7 +11,7 @@ remote="gddr"
 
 # Local directories you want to sync
 dir=(
-    "$HOME/.local/calibre"
+    "$HOME/.local/share/calibre"
     "$HOME/proxectos"
     "$HOME/.local/scripts"
     "$HOME/docs"

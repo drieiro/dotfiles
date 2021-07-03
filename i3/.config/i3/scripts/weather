@@ -35,7 +35,7 @@ case $BLOCK_BUTTON in
  : Probabilidad de lluvia/nieve
  : Mínima diaria
 盛 : Máxima diaria
- : El reporte está actualizado" ;;
+ : El reporte está desactualizado" ;;
     6) alacritty -e "$EDITOR" "$0" ;;
 esac
 
