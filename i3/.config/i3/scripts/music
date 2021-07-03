@@ -1,0 +1,36 @@
+#!/bin/sh
+
+#
+# music - control music players with playerctl
+#
+
+player_status="$(playerctl status 2>&1)"
+[ "$player_status" = "No players found" ] && exit 0
+
+case $BLOCK_BUTTON in
+    1) playerctl play-pause ;;
+    3) notify-send -i "audio-player" "Módulo de música" "\n- Haz clic para reproducir o pausar
+Artista - Nombre de la pista
+阮 : Reproduciendo desde Spotify
+嗢 : Reproduciendo desde VLC
+  : Reproduciendo desde otro programa
+  : Pausado
+" ;;
+    4) playerctl next ;;
+    5) playerctl previous ;;
+esac
+
+player="$(playerctl -l)"
+artist="$(playerctl metadata artist)"
+trackname="$(playerctl metadata title)"
+status="$(playerctl status)"
+
+case "$player" in
+    spotify) icon="阮" ;;
+    vlc) icon="嗢" ;;
+    *) icon="" ;;
+esac
+
+[ "$status" = "Paused" ] && echo " $artist - $trackname" && exit 0
+
+echo "$icon $artist - $trackname"

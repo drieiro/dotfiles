@@ -15,10 +15,10 @@ set splitbelow                  " Split direction
 set splitright                  " Vertical split direction
 set wildignorecase              " Ignore case for filenames and directories
 set linebreak
-if empty(glob('~/.config/nvim/undodir'))
-    silent !mkdir -p ~/.config/nvim/undodir
+if empty(glob('~/.cache/nvim/undodir'))
+    silent !mkdir -p ~/.cache/nvim/undodir
 endif
-set undodir=~/.config/nvim/undodir      " Undo directory
+set undodir=~/.cache/nvim/undodir      " Undo directory
 set undofile
 
 " Specific vim config

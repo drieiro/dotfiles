@@ -1,6 +1,3 @@
-# i3status configuration file.
-# see "man i3status" for documentation.
-
 # It is important that this file is edited as UTF-8.
 # The following line should contain a sharp s:
 # ß
@@ -14,11 +11,8 @@ general {
     color_bad = "#cc241d"
 }
 
-
-order += "spotify"
+order += "i3block music"
 order += "i3block weather"
-# order += "disk /"
-# order += "wireless wlp2s0f0"
 order += "i3block internet"
 order += "battery 1"
 order += "cpu_usage"
@@ -42,7 +36,6 @@ battery 1 {
     last_full_capacity = true
     integer_battery_capacity = true
     hide_seconds = true
-    # format = "%status %percentage %remaining"
     format = "%status %percentage"
     threshold_type = "percentage"
     low_threshold = 15
@@ -62,18 +55,10 @@ cpu_usage {
     format = " %usage"
 }
 
-# volume master {
-#     format = " %volume"
-#     format_muted = " (muted) %volume"
-#     device = "default"
-#     mixer = "Master"
-#     mixer_idx = 0
-# }
-
 volume_status {
     command = "pactl"
     format = " {percentage}%"
-    format_muted = " muted"
+    format_muted = "婢 muted"
     cache_timeout=0.5
     thresholds = [(0, 'bad'), (10, 'degraded'), (15, 'good')]
 }
@@ -87,14 +72,9 @@ i3block weather {
     interval = 120
 }
 
-spotify {
-    button_next = 4
-    button_play_pause = 1
-    button_previous = 5
-    format = " {artist} - {title}"
-    format_stopped = " detenido"
-    format_down = ""
-    color_good = "#fabd2f"
+i3block music {
+    command = "~/.config/i3/scripts/music"
+    interval = 3
 }
 
 do_not_disturb {
