@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 1edb647..0db5ef7 100644
+index 1edb647..010cff6 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -4,14 +4,14 @@
@@ -7,16 +7,15 @@ index 1edb647..0db5ef7 100644
  /* -fn option overrides fonts[0]; default X11 font or font set */
  static const char *fonts[] = {
 -	"monospace:size=10"
-+	"Noto Color Emoji:size=12"
 +	"RobotoMono Nerd Font:size=12"
  };
  static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
  static const char *colors[SchemeLast][2] = {
  	/*     fg         bg       */
 -	[SchemeNorm] = { "#bbbbbb", "#222222" },
-- 	[SchemeSel] = { "#eeeeee", "#005577" },
+-	[SchemeSel] = { "#eeeeee", "#005577" },
 -	[SchemeOut] = { "#000000", "#00ffff" },
-+	[SchemeNorm] = { "#bbbbbb", "#1d2021" },
++ 	[SchemeNorm] = { "#bbbbbb", "#1d2021" },
 + 	[SchemeSel] = { "#eeeeee", "#458588" },
 +	[SchemeOut] = { "#000000", "#282828" },
  };

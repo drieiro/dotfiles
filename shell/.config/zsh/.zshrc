@@ -1,7 +1,7 @@
 # zsh configuration
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.config/zsh/oh-my-zsh"
+export ZSH="$HOME/.local/share/oh-my-zsh"
 
 # Set name of the theme to load
 ZSH_THEME="drieiro"
@@ -15,6 +15,8 @@ source $ZSH/oh-my-zsh.sh
 
 # History settings
 setopt share_history
+HISTSIZE=10000000
+SAVEHIST=10000000
 HISTORY_IGNORE="(ls|exit|pwd|clear|history|cd)"
 HISTFILE=$HOME/.cache/history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 } # Ignore failed commands

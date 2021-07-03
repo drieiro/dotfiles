@@ -38,6 +38,7 @@ if [ -d "$HOME/.config/i3/scripts" ] ; then
 fi
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_QPA_PLATFORMTHEME=qt5ct
 alias spotify="spotify --no-zygote"
 
 # Clean up

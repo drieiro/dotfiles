@@ -21,7 +21,8 @@ alias \
     pubip="curl canhazip.com" \
     ip='ip --color' \
     ipb='ip --color --brief' \
-    cp='cp -v'
+    cp='cp -v' \
+    apt='sudo apt'
 
 [ -x "$(command -v trash)" ] && alias \
     rm='trash' \

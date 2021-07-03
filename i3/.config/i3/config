@@ -14,14 +14,12 @@ floating_modifier $mod
 font pango:RobotoMono Nerd Font 10
 
 # Colors
-# set $bg-color            #2f343f
-# set $inactive-bg-color   #2f343f
 set $bg-color            #1d2021
 set $inactive-bg-color   #1d2021
 set $text-color          #fbf1c7
 set $inactive-text-color #665c54
 set $urgent-bg-color     #83a598
-set $blue-color          #5DA8F4
+set $blue-color          #458588
 
 # i3-gaps
 gaps outer 10
@@ -40,10 +38,13 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+Return exec --no-startup-id alacritty --working-directory "$(readlink -e /proc/"$(pgrep -oP "$(xdo pid)")"/cwd)"
 
 # Start GUI file manager
-bindsym $mod+f exec --no-startup-id pcmanfm
+bindsym $mod+f exec --no-startup-id pcmanfm &
 
 # Start web browser
-bindsym $mod+n exec --no-startup-id brave-browser 
+bindsym $mod+n exec --no-startup-id brave-browser &
+
+# Start Telegram
+bindsym $mod+t exec --no-startup-id telegram &
 
 # kill focused window
 bindsym $mod+q kill
@@ -53,7 +54,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run -i
 
 # rofi
 # bindsym $mod+o exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -show-icons -show run -theme slate'
-bindsym $mod+o exec --no-startup-id rofi -i -show-icons -modi drun -show drun -theme slate
+bindsym $mod+o exec --no-startup-id rofi -i -show-icons -modi drun -show drun
 
 # wallpaper script
 bindsym $mod+Shift+p exec --no-startup-id wlp

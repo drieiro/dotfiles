@@ -4,8 +4,8 @@
 #
 
 emojis="$HOME/.local/share/emoji"
-# [ -e "$emojis" ] || wget 
 [ ! -x "$(command -v fzf)" ] && echo "fzf no está instalado o no es ejecutable." && exit 1
+[ ! -e "$emojis" ] && echo "Descargando lista de emojis..." && wget -qO "$emojis" https://raw.githubusercontent.com/drieiro/dotfiles/main/misc/.local/share/emoji 
 
 # Default FZF options
 export FZF_DEFAULT_OPTS='

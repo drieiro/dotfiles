@@ -10,6 +10,18 @@ dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 install_i3 () {
     sudo apt update &>/dev/null
     sudo apt install -y i3 compton dunst py3status rofi libnotify-bin playerctl pavucontrol xbacklight feh network-manager-gnome nautilus-dropbox xdo xdotool arandr xclip lxappearance clipit unclutter-xfixes
+
+    # Install i3-gaps for Debian
+    if echo $(lsb_release -ds) | grep -q "Debian"; then
+        curl -s https://api.github.com/repos/barnumbirr/i3-gaps-debian/releases/latest \
+            | grep "browser_download_url" \
+            | grep "buster.deb\"" \
+            | awk '{print $2}' \
+            | tr -d \" \
+            | xargs wget -O "/tmp/i3gaps.deb" \
+        && sudo apt install -y "/tmp/i3gaps.deb"
+    fi
+
 }
 
 install_nerdfont () {
@@ -72,6 +84,26 @@ install_X11 () {
     bash $dir/X11/install.sh
 }
 
+install_dmenu () {
+    sudo git clone https://git.suckless.org/dmenu /opt/dmenu && \
+        cd /opt/dmenu
+        sudo git apply $dir/dmenu/dmenu-config.diff
+        sudo make && sudo make install
+}
+
+install_gtk () {
+    git clone https://github.com/sainnhe/gruvbox-material-gtk.git /tmp/gruvbox-material-gtk && \
+        sudo mv /tmp/gruvbox-material-gtk/themes/Gruvbox-Material-Dark /usr/share/themes
+        sudo mv /tmp/gruvbox-material-gtk/icons/Gruvbox-Material-Dark /usr/share/icons
+}
+
+install_zsh () {
+    sudo apt install zsh
+    ZSH="${XDG_DATA_HOME:-$HOME/.local/share}/oh-my-zsh" ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh" sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # Remove default oh-my-zsh's zshrc file.
+    rm -rf ~/.zshrc
+}
+
 
 #######################################################################################
 
@@ -79,14 +111,17 @@ install_X11 () {
 read -rp "Make preinstallation? [y/n]: " preinstallation
 
 if [ "$preinstallation" = "y" ]; then
-    install_i3
-    install_nerdfont
-    install_git
-    install_mpv
-    install_evince
-    install_pynvim
-    install_oh-my-zsh
     install_X11
+    install_dmenu
+    install_evince
+    install_git
+    install_gtk
+    install_i3
+    install_mpv
+    install_nerdfont
+    install_oh-my-zsh
+    install_pynvim
+    install_zsh
 fi
 
 # Manage dotfiles
