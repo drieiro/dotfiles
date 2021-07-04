@@ -16,5 +16,5 @@ if [ -f ~/.fehbg ]; then
     sh ~/.fehbg
 else
     # Own wallpaper configuration script
-    wallp
+   wlp 
 fi

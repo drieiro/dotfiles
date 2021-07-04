@@ -73,7 +73,7 @@ i3block weather {
 }
 
 i3block music {
-    command = "~/.config/i3/scripts/music"
+    command = "~/.config/i3/scripts/music | cut -c 1-40"
     interval = 3
 }
 

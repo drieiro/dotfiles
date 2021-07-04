@@ -46,6 +46,9 @@ bindsym $mod+n exec --no-startup-id brave-browser &
 # Start Telegram
 bindsym $mod+t exec --no-startup-id telegram &
 
+# Start Telegram
+bindsym $mod+Shift+s exec --no-startup-id spotify &
+
 # kill focused window
 bindsym $mod+q kill
 
@@ -152,9 +155,9 @@ assign [class="Brave"] $ws2
 assign [class="Pcmanfm"] $ws3
 assign [class="mpv"] $ws4
 assign [class="TelegramDesktop"] $ws5
+assign [class="Spotify"] $ws10
 for_window [class="libreoffice"] move to workspace $ws6
 for_window [class="VirtualBox Machine"] move to workspace $ws9
-for_window [class="spotify"] move to workspace $ws10
 
 # Put this window on the presentation output.
 # bindsym $mod+F5 move container to output HDMI1

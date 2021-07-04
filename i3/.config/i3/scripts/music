@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# music - control music players with playerctl
+# music - i3blocks blocklet for music
 #
 
 player_status="$(playerctl status 2>&1)"
@@ -13,8 +13,8 @@ case $BLOCK_BUTTON in
 Artista - Nombre de la pista
 阮 : Reproduciendo desde Spotify
 嗢 : Reproduciendo desde VLC
-  : Reproduciendo desde otro programa
-  : Pausado
+ : Reproduciendo desde otro programa
+ : Pausado
 " ;;
     4) playerctl next ;;
     5) playerctl previous ;;
@@ -28,9 +28,11 @@ status="$(playerctl status)"
 case "$player" in
     spotify) icon="阮" ;;
     vlc) icon="嗢" ;;
+    tdesktop) icon="切" ;;
     *) icon="" ;;
 esac
 
-[ "$status" = "Paused" ] && echo " $artist - $trackname" && exit 0
+[ "$status" = "Paused" ] && icon=""
 
+[ -z "$artist" ] && echo "$icon $trackname" && exit 0
 echo "$icon $artist - $trackname"
