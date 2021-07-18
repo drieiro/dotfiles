@@ -46,8 +46,6 @@ bindsym $mod+n exec --no-startup-id brave-browser &
 # Start Telegram
 bindsym $mod+t exec --no-startup-id telegram &
 
-# Start Telegram
-bindsym $mod+Shift+s exec --no-startup-id spotify &
 
 # kill focused window
 bindsym $mod+q kill
@@ -107,6 +105,9 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+# Sticky window on 1366x768 display
+bindsym $mod+Shift+s floating enable, sticky enable, resize set 480 px 270 px, move window to position 876 px 488 px
+
 # focus the child container
 #bindsym $mod+d focus child
 
@@ -158,6 +159,8 @@ assign [class="TelegramDesktop"] $ws5
 assign [class="Spotify"] $ws10
 for_window [class="libreoffice"] move to workspace $ws6
 for_window [class="VirtualBox Machine"] move to workspace $ws9
+
+for_window [title="Picture-in-Picture"] sticky enable
 
 # Put this window on the presentation output.
 # bindsym $mod+F5 move container to output HDMI1
