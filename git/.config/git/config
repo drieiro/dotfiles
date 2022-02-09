@@ -1,6 +1,7 @@
 [user]
 	name = drieiro
 	email = riesp@pm.me
+	signingkey = 97EA371A4E918DD34E5FA8BE7569910339462F8A
 [color]
 	ui = true
 [core]
