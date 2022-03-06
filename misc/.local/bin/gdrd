@@ -2,7 +2,7 @@
 
 [ "$#" -ne "1" ] && echo "$0 [ montar | desmontar ]" && exit 1
 
-dir="/tmp/gdrd"
+dir="/run/media/drieiro/gdrd"
 
 [ ! -d "$dir" ] && mkdir -p "$dir"
 

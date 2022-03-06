@@ -1,9 +1,9 @@
 #!/bin/sh
 
-d=/tmp/pyweb
+d="/tmp"
 
 startserver() {
-    cd $d || exit
+    ln -s "$(pwd)" "$d"
     nohup python3 -m http.server 8080 >/tmp/pyweb.log 2>&1 &
     echo "http://$(hostname -i):8080"
 }
