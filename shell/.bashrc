@@ -13,8 +13,8 @@ source $HOME/.config/shell/aliasrc
 # Add functions
 source $HOME/.config/shell/functionrc
 
-HISTSIZE=1000
-HISTFILESIZE=4000
+HISTSIZE=10000
+HISTFILESIZE=40000
 export HISTFILE=$HOME/.cache/history
 
 # set PATH so it includes user's private bin if it exists

@@ -24,6 +24,7 @@ alias \
     ipb='ip --color --brief' \
     cp='cp -v' \
     rgrep='grep -r'
+    netstat='ss'
 
 [ -x "$(command -v trash)" ] && alias \
     rm='trash' \
@@ -48,3 +49,6 @@ alias \
     geoip='geoiplookup' \
     ffmpeg="ffmpeg -hide_banner" \
     ffprobe="ffprobe -hide_banner"
+
+# Git aliases
+[ -e ~/.config/shell/git ] && source ~/.config/shell/git
