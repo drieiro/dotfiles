@@ -44,6 +44,7 @@ alias \
     dsync='rsync -trluhv --delete --stats --inplace' \
     mp3="youtube-dl -x -o '%(title)s.%(ext)s' --add-metadata --audio-format mp3 --audio-quality 320K" \
     yt='yt-dlp' \
+    youtube-dl='yt-dlp' \
     f='fff' \
     nb='newsboat' \
     geoip='geoiplookup' \

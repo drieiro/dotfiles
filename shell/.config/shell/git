@@ -59,3 +59,4 @@ alias gdup='git diff @{upstream}'
 alias gdw='git diff --word-diff'
 
 alias gst='git status'
+alias gp='git push'
