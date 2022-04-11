@@ -1,16 +1,21 @@
 #!/bin/sh
 
-rsync -LH -trluhv --delete --stats --inplace \
-    --exclude '.git' \
-    ${SC:-$HOME/.local/scripts} $HOME/Dropbox/bak
+dir=$(mktemp -d)
 
 rsync -LH -trluhv --delete --stats --inplace \
     --exclude '.git' \
-    $HOME/.config/i3/ $HOME/Dropbox/bak/i3/
+    ${SC:-$HOME/.local/scripts} $dir
+
+# rsync -LH -trluhv --delete --stats --inplace \
+#     --exclude '.git' \
+#     $HOME/.config/i3/ $HOME/Nextcloud/bak/i3/
 
 rsync -LH -trluhv --delete --stats --inplace \
     --exclude '.git' \
-    $HOME/.dotfiles/ $HOME/Dropbox/bak/dotfiles/
+    $HOME/.corefiles/ $dir
 
-cp -v $HOME/.local/bin/keeback $HOME/Dropbox/bak/scripts
-cp -v $HOME/.config/rclone/rclone_func $HOME/Dropbox/bak/scripts
+cp -v $HOME/.local/bin/keeback $dir
+cp -v $HOME/.local/bin/4wg $dir
+cp -v $HOME/.config/rclone/rclone_func $dir
+
+tar czvf /tmp/scr_backup.tar.gz "$dir" && mv /tmp/scr_backup.tar.gz $HOME/Nextcloud/bak
