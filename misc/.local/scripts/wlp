@@ -1,17 +1,23 @@
 #!/bin/sh
 
-dir="/media/Pictures/Wallpapers/wall" # Set wallpapers directory
+# Add defaults
+. $HOME/.config/wlp/config
 
 pic=$(find $dir/* -type f | shuf -n 1)
 
-if ps -e | grep -qi "gnome"; then
+if ps -e | grep -qi "gnome-shell"; then
     PID=$(pgrep -o gnome-session)
     DBUS_SESSION_BUS_ADDRESS="$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/"$PID"/environ|cut -d= -f2- | tr '\0' '\n')"
     export DBUS_SESSION_BUS_ADDRESS
     /usr/bin/gsettings set org.gnome.desktop.background picture-uri "file://$pic"
     /usr/bin/gsettings set org.gnome.desktop.background picture-uri-dark "file://$pic"
+elif ps -e | grep -qi "xfce4-session"; then
+    PID=$(pgrep -o xfce4-session)
+    DBUS_SESSION_BUS_ADDRESS="$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/"$PID"/environ|cut -d= -f2- | tr '\0' '\n')"
+    export DBUS_SESSION_BUS_ADDRESS
+    xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitoreDP-1/workspace0/last-image -s "$pic"
 else
     type feh >/dev/null 2>&1 || (echo "feh no está instalado." && exit 1)
-    feh --bg-fill "$pic"
-    type notify-send >/dev/null 2>&1 && notify-send "Wallpaper actualizado"
+    /usr/bin/feh --bg-fill "$pic"
+    type notify-send >/dev/null 2>&1 #&& /usr/bin/notify-send "Wallpaper actualizado"
 fi
