@@ -1,2 +1,6 @@
 #!/bin/sh
-dir="/media/Pictures/Wallpapers/wall" 
+
+case "$(hostname)" in
+    core) dir="/media/Pictures/Wallpapers/wall" ;;
+    hp) dir="/home/drieiro/Imaxes/wall" ;;
+esac
