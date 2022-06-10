@@ -10,7 +10,8 @@ alias \
     cd..='cd ..' \
     d='cd ..' \
     ls="ls -hN --color=auto --group-directories-first" \
-    l='ls -l' \
+    l='ls -lh' \
+    ll='ls -lah' \
     lt='ls -hsSF -1' \
     mnt="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | egrep ^/dev/ | sort" \
     hg=' history | grep' \
@@ -24,11 +25,13 @@ alias \
     ipb='ip --color --brief' \
     cp='cp -v' \
     rgrep='grep -r'
-    netstat='ss'
 
 [ -x "$(command -v trash)" ] && alias \
     rm='trash' \
     te='trash-empty'
+
+[ -x "$(command -v ss)" ] && alias \
+    netstat='ss'
 
 # Navigation aliases
 alias \
