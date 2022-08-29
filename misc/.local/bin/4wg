@@ -1,0 +1,71 @@
+#!/bin/bash
+# shellcheck disable=SC2059
+
+
+#
+# Descarga threads de /wg/
+#
+
+
+# Configuramos as cores das mensaxes mostradas por pantalla
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[0;33m'
+NC='\033[0m' # Branco
+
+# Configuramos para que o URL se obteña do primeiro parámetro
+URL="$1"
+
+# Mostramos unha pequena axuda se o parámetro é -h ou --help
+if [ "$URL" = "--help" ] || [ "$URL" = "-h" ]; then
+    printf "4wg [ thread URL ]\n\nExemplo:\n4wg https://boards.4chan.org/wg/thread/7892724\n"
+    exit 0
+fi
+
+# Comprobamos que o URL sexa correcto
+if ! echo "$URL" | grep -qE "https://boards.4chan.org/wg/thread/[0-9]*"; then
+    printf "${RED}O URL do thread parece incorrecto, ten que ser co seguinte formato:${NC}
+https://boards.4chan.org/wg/thread/[0-9]*\n"
+    exit 1
+fi
+
+# Comprobamos dependencias
+for pkg in curl wget; do
+    ! command -v "$pkg" &>/dev/null && printf "${RED}O programa $pkg non está instalado.${NC}\n" && exit 2
+done
+
+# Obtemos os links das imaxes e gardámolos nun array
+links=($(curl -s "$URL" | grep -Eo 'i.4cdn.org/wg/[0-9]*\.[png-jpg]*' | uniq)) || exit 5
+
+# Configuramos o cartafol onde descargará as imaxes
+# Por defecto será o cartafol de descargas do entorno gráfico,
+# se non existe, será o directorio actual
+descargas="$(xdg-user-dir DOWNLOAD)"
+dlfolder="${descargas:-$(pwd)}/thread-$(echo "$URL" | grep -Eo '[0-9]*$')"
+
+# Creamos o bucle que descargará as imaxes
+descargar () {
+    [ -d "$dlfolder" ] || mkdir "$dlfolder"
+    [ "$?" -ne '0' ] && printf "${RED}Non se puido crear o cartafol $dlfolder.${NC}\n" && exit 3
+    pushd "$dlfolder" || exit 4
+        for imaxe in "${links[@]}"; do
+            if wget -q -nc -t 3 "$imaxe" &>/dev/null; then
+                printf "${GREEN}[ + ] OK: $imaxe${NC}\n"
+            else
+                printf "${RED}[ + ] KO: $imaxe${NC}\n"
+            fi
+        done \
+    && popd && exit 0
+}
+
+# Mostramos por pantalla o "menú" principal
+printf "${BLUE}Vas a descargar ${#links[@]} wallpapers no directorio \"$dlfolder\"
+${YELLOW}Continuar?${NC}\n"
+select continuar in "Si" "Non"; do
+    case "$continuar" in
+        "Si") descargar ;;
+        "Non") exit 255 ;;
+        *) echo "Opción non válida" ;;
+    esac
+done
