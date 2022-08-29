@@ -3,7 +3,7 @@
 #
 
 # If not running interactively, don't do anything
-#[[ $- != *i* ]] && return
+[[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
@@ -48,6 +48,7 @@ export PF_INFO="ascii title os kernel wm pkgs shell editor"
 
 # Default software
 export EDITOR="nvim"
+export GIT_EDITOR="nvim"
 export BROWSER="firefox"
 export TERMINAL="gnome-terminal"
 
