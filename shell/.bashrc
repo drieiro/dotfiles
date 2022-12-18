@@ -76,7 +76,6 @@ export YTFZF_CONFIG_FILE="$YTFZF_CONFIG_DIR/conf.sh"
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 [ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
 
-
 if [ ! -x "$(command -v starship)" ]; then
     curl -sS https://starship.rs/install.sh | sh
 fi

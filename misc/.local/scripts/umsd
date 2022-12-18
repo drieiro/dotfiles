@@ -4,7 +4,7 @@
 
 echo -e "Dispositivos disponibles:\n"
 df | head -1 | awk {'printf ("%5s\t%s\n", $1, $8)'} 2>/dev/null
-df | egrep ^/dev | awk {'printf ("%5s\t%s\n", $1, $6)'} 2>/dev/null
+df | grep -E ^/dev | awk {'printf ("%5s\t%s\n", $1, $6)'} 2>/dev/null
 echo -e "\nEscoja el disco a expulsar."
 read -p "/dev/" DISCO
 udisksctl unmount -b /dev/$DISCO

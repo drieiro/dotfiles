@@ -81,3 +81,6 @@ if [ -n "$DESKTOP_SESSION" ]; then
         export SSH_AUTH_SOCK
     fi
 fi
+
+export LC_ALL=gl_ES.utf8
+export LANG=gl_ES.utf8
