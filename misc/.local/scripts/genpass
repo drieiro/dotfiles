@@ -93,14 +93,14 @@ main () {
 
     # Show password and save on clipboard
     if [ "$show_pass" = "true" ]; then
-        echo "Contraseña aleatoria:\n\n$pass\n"
+        printf "Contraseña aleatoria: $pass\n"
     fi
 
     # Copy password to clipboard with xclip
     if ! type xclip >/dev/null 2>&1; then 
         echo "xclip no se encuentra instalado en el sistema. No ha sido posible copiar la contraseña al portapapeles" && exit 4
     fi
-    echo "$pass" | tr -d '\n' | xclip -sel clip && echo "Contraseña copiada al portapapeles"
+    printf "$pass" | tr -d '\n' | xclip -sel clip && echo "Contraseña copiada al portapapeles"
 }
 
 if [ $# -le 2 ]; then
