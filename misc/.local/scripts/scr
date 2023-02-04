@@ -18,4 +18,4 @@ cp -v $HOME/.local/bin/keeback $dir
 cp -v $HOME/.local/bin/4wg $dir
 #cp -v $HOME/.config/rclone/rclone_func $dir
 
-tar czvf /tmp/scr_backup.tar.gz "$dir" && mv /tmp/scr_backup.tar.gz $HOME/Nextcloud/bak
+tar czvf /tmp/scr_backup.tar.gz "$dir" && mv /tmp/scr_backup.tar.gz $HOME/Nextcloud/Backup

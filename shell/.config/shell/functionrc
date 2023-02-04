@@ -49,8 +49,6 @@ sc() {
     find -L ${SC:-$HOME/.local/scripts} $HOME/.config/i3/scripts $HOME/.local/bin -type f -not -path '*/\.git/*' 2>/dev/null | fzf -e --height=30% --layout=reverse --prompt="Scripts: " --preview="cat {1}" | xargs -r ${EDITOR:-nvim}
 }
 
-# https://askubuntu.com/a/197532
-
 caracteres () {
     echo ${#1}
 }
