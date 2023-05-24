@@ -13,9 +13,10 @@ source $HOME/.config/shell/aliasrc
 # Add functions
 source $HOME/.config/shell/functionrc
 
-HISTSIZE=10000
-HISTFILESIZE=40000
 export HISTFILE=$HOME/.cache/bash/history
+HISTSIZE=-1
+HISTFILESIZE=-1
+HISTIGNORE='&:ls:[bf]g:exit:pwd:clear:history:df:mount:umount:[ \t]*'
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then

@@ -1,4 +1,3 @@
 #!/bin/sh
 
-VBoxManage startvm "$1" --type headless #&& \
-#    mac="$(vboxmanage list runningvms | grep $1 | awk '{print $2}' | tr -d \{\})"
+VBoxManage startvm "$1" --type headless 
