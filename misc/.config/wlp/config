@@ -1,6 +1,6 @@
 #!/bin/sh
 
 case "$(hostname)" in
-    thor) dir="/media/Pictures/Wallpapers/wall" ;;
+    thor) dir="/home/drieiro/.local/share/wallpapers" ;;
     ymir) dir="/home/drieiro/.local/share/wallpapers" ;;
 esac
