@@ -74,6 +74,7 @@ endif
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 
     Plug 'tpope/vim-commentary'
+    Plug 'ap/vim-css-color'
     Plug 'tpope/vim-fugitive'   " Git wrapper
     Plug 'romainl/vim-cool'     " Disables search highlighting when you are done
     Plug 'vim-airline/vim-airline'
