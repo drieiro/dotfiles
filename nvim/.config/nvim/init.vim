@@ -62,6 +62,9 @@ nnoremap < <<
 vnoremap > >gv
 vnoremap < <gv
 
+" yaml indentation config
+autocmd FileType yaml setlocal ai ts=2 sw=2 sts=2 et
+
 " Install vim-plug if not found
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
