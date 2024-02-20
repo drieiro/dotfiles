@@ -77,8 +77,10 @@ fi
 # Launch gnome-keyring
 if [ -n "$DESKTOP_SESSION" ]; then
     if [ -x "$(command -v gnome-keyring-daemon)" ]; then
-        eval $(gnome-keyring-daemon --start)
-        export SSH_AUTH_SOCK
+        eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+        # export SSH_AUTH_SOCK
+        # https://www.reddit.com/r/archlinux/comments/1aq97m8/gnomekeyring_14601_in_extratesting_disables/
+        export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
     fi
 fi
 
