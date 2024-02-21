@@ -20,6 +20,17 @@ dif() {
     grep -E -C3 '^.{123} [|<>]( |$)' | colordiff | less -rS
 }
 
+caracteres () {
+    echo ${#1}
+}
+
+vm() {
+    VBoxManage startvm "$1" --type headless 
+}
+
+vmoff() {
+    VBoxManage controlvm "$1" poweroff
+}
 
 # fzf functions
 
@@ -49,6 +60,3 @@ sc() {
     find -L ${SC:-$HOME/.local/scripts} $HOME/.config/i3/scripts $HOME/.local/bin -type f -not -path '*/\.git/*' 2>/dev/null | fzf -e --height=30% --layout=reverse --prompt="Scripts: " --preview="cat {1}" | xargs -r ${EDITOR:-nvim}
 }
 
-caracteres () {
-    echo ${#1}
-}
