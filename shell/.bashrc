@@ -39,6 +39,17 @@ if [ -d "$HOME/.config/i3/scripts" ] ; then
     PATH="$HOME/.config/i3/scripts:$PATH"
 fi
 
+# Launch gnome-keyring
+if [ -n "$DESKTOP_SESSION" ]; then
+    if [ -x "$(command -v gnome-keyring-daemon)" ]; then
+        eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+        # export SSH_AUTH_SOCK
+        # https://www.reddit.com/r/archlinux/comments/1aq97m8/gnomekeyring_14601_in_extratesting_disables/
+        export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+    fi
+fi
+export LC_ALL=gl_ES.utf8
+export LANG=gl_ES.utf8
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_IM_MODULE=xim
