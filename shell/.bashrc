@@ -16,7 +16,7 @@ source $HOME/.config/shell/functionrc
 export HISTFILE=$HOME/.cache/bash/history
 HISTSIZE=-1
 HISTFILESIZE=-1
-HISTIGNORE='&:ls:[bf]g:exit:pwd:clear:history:df:mount:umount:[ \t]*'
+HISTIGNORE='exit:pwd:clear:history'
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
