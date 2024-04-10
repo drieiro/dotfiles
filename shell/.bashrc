@@ -28,7 +28,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# set PATH so it includes my personal scripts if the folder exists (it should)
+# set PATH so it includes my personal scripts if the folder exists
 if [ -d "$HOME/.local/scripts" ] ; then
     PATH="$HOME/.local/scripts:$PATH"
     export SC=$HOME/.local/scripts
@@ -62,8 +62,9 @@ export TERMINAL="gnome-terminal"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-export GNUPGHOME=${XDG_CONFIG_HOME:-$HOME/.config}/gnupg
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export LESSHISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/less/lesshst"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export PYLINTHOME="${XDG_DATA_HOME:-$HOME/.local/share}/pylint"
@@ -73,6 +74,15 @@ export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
 export USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
 export ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
+alias adb='HOME="$XDG_DATA_HOME"/android adb'
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export GOPATH="$XDG_DATA_HOME"/go
+export DVDCSS_CACHE="$XDG_DATA_HOME"/dvdcss
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 
 # ytfzf
 export YTFZF_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/ytfzf"
