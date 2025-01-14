@@ -43,6 +43,9 @@ alias \
     v="nvim" \
     vimdiff="nvim -d"
 
+[ -x "$(command -v docker)" ] && alias \
+    shellcheck='docker run --rm -it -v "$(pwd):/mnt" koalaman/shellcheck:stable'
+
 alias \
     dsync='rsync -trluhv --delete --stats --inplace' \
     mp3="youtube-dl -x -o '%(title)s.%(ext)s' --add-metadata --audio-format mp3 --audio-quality 320K" \
