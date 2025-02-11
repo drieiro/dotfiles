@@ -3,4 +3,5 @@
 case "$(hostname)" in
     thor) dir="/home/drieiro/.local/share/wallpapers" ;;
     ymir) dir="/home/drieiro/.local/share/wallpapers" ;;
+    sif) dir="/home/drieiro/.local/share/wallpapers" ;;
 esac
