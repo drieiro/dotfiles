@@ -74,7 +74,7 @@ checks () {
     [ "$num_characters" -le 5 ] && echo "Selecciona una longitud mayor o igual a 6." && exit 2
 
     # Check if $mode is normal or strong
-    if [ $mode != 'strong' ] && [ $mode != 'normal' ]; then
+    if [ "$mode" != 'strong' ] && [ "$mode" != 'normal' ]; then
         echo "mode debe ser 'normal' o 'strong'" && echo "Ejecuta '$scriptname -h' para más información." && exit 3
     fi
 }
@@ -93,14 +93,14 @@ main () {
 
     # Show password and save on clipboard
     if [ "$show_pass" = "true" ]; then
-        printf "Contraseña aleatoria: $pass\n"
+        printf "Contraseña aleatoria: %s\n" "$pass"
     fi
 
     # Copy password to clipboard with xclip
     if type xclip >/dev/null 2>&1; then 
-        printf "$pass" | tr -d '\n' | xclip -sel clip && echo "Contraseña copiada al portapapeles"
+        printf "%s" "$pass" | tr -d '\n' | xclip -sel clip && echo "Contraseña copiada al portapapeles"
     elif type wl-copy >/dev/null 2>&1; then
-        printf "$pass" | tr -d '\n' | wl-copy && echo "Contraseña copiada al portapapeles"
+        printf "%s" "$pass" | tr -d '\n' | wl-copy && echo "Contraseña copiada al portapapeles"
     else
         echo "No se han encontrado xclip o wl-copy instalados en el sistema. No ha sido posible copiar la contraseña al portapapeles" && exit 4
     fi
