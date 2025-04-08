@@ -97,10 +97,13 @@ main () {
     fi
 
     # Copy password to clipboard with xclip
-    if ! type xclip >/dev/null 2>&1; then 
-        echo "xclip no se encuentra instalado en el sistema. No ha sido posible copiar la contraseña al portapapeles" && exit 4
+    if type xclip >/dev/null 2>&1; then 
+        printf "$pass" | tr -d '\n' | xclip -sel clip && echo "Contraseña copiada al portapapeles"
+    elif type wl-copy >/dev/null 2>&1; then
+        printf "$pass" | tr -d '\n' | wl-copy && echo "Contraseña copiada al portapapeles"
+    else
+        echo "No se han encontrado xclip o wl-copy instalados en el sistema. No ha sido posible copiar la contraseña al portapapeles" && exit 4
     fi
-    printf "$pass" | tr -d '\n' | xclip -sel clip && echo "Contraseña copiada al portapapeles"
 }
 
 if [ $# -le 2 ]; then
